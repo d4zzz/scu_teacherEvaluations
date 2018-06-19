@@ -2,8 +2,8 @@
 
 from flask import Flask
 
-
+#实例化一个应用
 app = Flask(__name__)
 
-
-from app import views,models
+#导入视图模块
+from app import views
