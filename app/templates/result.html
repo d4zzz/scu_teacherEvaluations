@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>一键评教系统</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="plugins/html5shiv.min.js"></script>
     <script src="plugins/respond.min.js"></script>
@@ -18,13 +18,11 @@
     {{ message }}
   </div>
   {% endfor %}
-<div class="py5 text-center">
-            <h1>一键评教</h1>
-</div>
 <div >
-{% import "bootstrap/wtf.html" as wtf %}
-{{ wtf.quick_form(form) }}
-<b>默认全好评，评价为“很好”,提交后请耐心等待</b>
+{{ table|safe }}
+</div>
+<div class="text-center">
+<button class="btn-lg"><a class="button" href="rate">返回评教页面</></>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

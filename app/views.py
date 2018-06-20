@@ -1,8 +1,10 @@
 #-*-coding:utf-8 -*-
 from selenium import webdriver
+from bs4 import BeautifulSoup
 from flask import send_file,Flask,request,make_response,render_template,redirect
 from app import  app
 from .forms import rateForm
+import re
 
 #路由装饰器
 @app.route('/rate',methods=['GET','POST'])
@@ -51,8 +53,17 @@ def rate():
             broswer.get('http://zhjw.scu.edu.cn/jxpgXsAction.do?oper=listWj')
             broswer.find_element_by_css_selector(".pageAlign > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > select:nth-child(5) > option:nth-child(8)").click()
         flash('评教完成')
+        #返回评教结果页面
+        ret=broswer.page_source
         #关闭浏览器进程
         broswer.close()
+        #使用bs选择结果表单
+        soup=BeautifulSoup(ret,'html.parser')
+        ret=soup.select('.displayTag')
+        ret=str(ret[0])
+        #替换图片超链接
+        ret=re.sub("<img.+\n.+\n.+>\n",'',ret)
+        return render_template('result.html',table=ret)
         return render_template('rate.html',form=form)
     #处理GET，返回渲染页面
     return render_template('rate.html',form=form)
