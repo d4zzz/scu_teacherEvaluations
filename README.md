@@ -14,7 +14,7 @@ sudo apt install firefox
 ```sh
 wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
 tar zxvf geckodriver-v0.21.0-linux64.tar.gz
-mv geckodriver /usr/bin/
+cp geckodriver /usr/bin/
 ```
 安装python依赖
 ```sh
